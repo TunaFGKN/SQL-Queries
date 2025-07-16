@@ -60,3 +60,12 @@ SELECT * FROM Products WHERE UnitPrice > (SELECT AVG(UnitPrice) FROM Products)
 
 --17. "Beverages" kategorisindeki ürünleri getirmek için alt sorgu kullan.
 SELECT * FROM Products WHERE CategoryID IN (SELECT CategoryID FROM Categories WHERE CategoryName = 'Beverages')
+
+--18. En pahalý ürünün bilgilerini alt sorguyla bul.
+SELECT * FROM Products WHERE UnitPrice = (SELECT MAX(UnitPrice) FROM Products)
+
+--19. En çok sipariþ verilen ürünü tespit et.
+SELECT * FROM Products WHERE UnitsOnOrder = (SELECT MAX(UnitsOnOrder) FROM Products)
+
+--20. Kategorisine göre ortalamanýn üzerinde olan ürünleri getir.
+SELECT * FROM Products P WHERE UnitPrice > (SELECT AVG(UnitPrice) FROM Products WHERE CategoryID = P.CategoryID)
